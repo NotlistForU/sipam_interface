@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de Inundação Urbana - CENSIPAM</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+
+</head>
+
+<body class="bg-dark"> <!-- Alterado para bg-light para dar melhor contraste com o card -->
+
+    <div class="container mt-4 mb-4 d-flex justify-content-center">
+
+        <!-- Card Principal com borda azul e largura controlada -->
+        <div class="card w-100 border-censipam-azul">
+
+            <!-- Cabeçalho Principal em Azul CENSIPAM -->
+            <div class="card-header bg-censipam-azul text-white fw-bold fs-5 text-center">
+                {{ titulo }}
+            </div>
+
+            <div class="card-body bg-light">
+
+                <form class="d-flex flex-column gap-3">
+
+                    <!-- Bloco A: Localização (Borda Verde) -->
+                    <div class="card border-censipam-verde shadow-sm">
+                        <div class="card-header bg-censipam-verde text-white fw-semibold">
+                            Localização
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row g-3"> <!-- Uso de grid do Bootstrap para alinhar lado a lado -->
+
+                                <!-- Município -->
+                                <div class="col-md-4">
+                                    <!-- Div flexbox para alinhar o círculo e o texto lado a lado -->
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <!-- Círculo com o número -->
+                                        <div class="d-flex align-items-center justify-content-center bg-censipam-azul text-white rounded-circle"
+                                            style="width: 28px; height: 28px; min-width: 28px;">
+                                            <span class="fs-6 fw-bold">1</span>
+                                        </div>
+                                        <!-- Label do campo -->
+                                        <label class="form-label text-censipam-azul fw-semibold m-0">Município</label>
+                                    </div>
+
+                                    <select name="municipio" id="municipio" class="form-select border-censipam-azul">
+                                        <option value="" selected disabled>Selecione...</option>
+                                        <option value="VitoriaDoMaerim">Vitória do Mearim</option>
+                                        <option value="Araguatins">Araguatins</option>
+                                        <option value="BarraDoBugres">Barra Do Bugres</option>
+                                        <option value="JiParana">Ji-Paraná</option>
+                                        <option value="Labrea">Lábrea</option>
+                                        <option value="Manaus">Manaus</option>
+                                    </select>
+                                </div>
+
+                                <!-- Código Censitário -->
+                                <div class="col-md-4">
+                                    <!-- Div flexbox para alinhar o círculo e o texto lado a lado -->
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <!-- Círculo com o número -->
+                                        <div class="d-flex align-items-center justify-content-center bg-censipam-azul text-white rounded-circle"
+                                            style="width: 28px; height: 28px; min-width: 28px;">
+                                            <span class="fs-6 fw-bold">2</span>
+                                        </div>
+                                        <!-- Label do campo -->
+                                        <label class="form-label text-censipam-azul fw-semibold m-0">Código
+                                            Censitário</label>
+                                    </div>
+
+                                    <select name="codigo_censitario" id="codigo_censitario"
+                                        class="form-select text-muted">
+                                        <option value="" selected disabled>Selecione Município </option>
+                                        <option value="110020505000002">110020505000002</option>
+                                        <option value="355030801000001">355030801000001</option>
+                                        <option value="330455705030045">330455705030045</option>
+                                        <option value="291480205000012">291480205000012</option>
+                                        <option value="431490205000088">431490205000088</option>
+                                    </select>
+                                </div>
+
+                                <!-- Código Estação -->
+                                <div class="col-md-4">
+                                    <!-- Div flexbox para alinhar o círculo e o texto lado a lado -->
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <!-- Círculo com o número -->
+                                        <div class="d-flex align-items-center justify-content-center bg-censipam-azul text-white rounded-circle"
+                                            style="width: 28px; height: 28px; min-width: 28px;">
+                                            <span class="fs-6 fw-bold">3</span>
+                                        </div>
+                                        <!-- Label do campo -->
+                                        <label class="form-label text-censipam-azul fw-semibold m-0">Código
+                                            Estação</label>
+                                    </div>
+
+                                    <select name="codigo_estacao" id="codigo_estacao" class="form-select text-muted">
+                                        <option value="" selected disabled>Selecione Município</option>
+                                        <option value="17050001">17050001</option>
+                                        <option value="15324000">15324000</option>
+                                        <option value="15430000">15430000</option>
+                                        <option value="12500000">12500000</option>
+                                        <option value="11500001">11500001</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bloco B: Coordenadas (Borda Verde) -->
+                    <div class="card border-censipam-verde shadow-sm">
+                        <div class="card-header bg-censipam-verde text-white fw-semibold">
+                            Coordenadas e Mapa
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Latitude</label>
+                                    <input type="number" step="any" class="form-control" id="latitude" name="latitude">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Longitude</label>
+                                    <input type="number" step="any" class="form-control" id="longitude"
+                                        name="longitude">
+                                </div>
+                            </div>
+
+                            <div id="mapa" style="height: 200px;"></div>
+
+                            <small class="text-muted">
+                                Clique no mapa para selecionar as coordenadas.
+                            </small>
+
+                        </div>
+                    </div>
+
+                    <!-- Bloco C: Níveis do Rio (Borda Verde) -->
+                    <div class="card border-censipam-verde shadow-sm">
+                        <div class="card-header bg-censipam-verde text-white fw-semibold">
+                            Níveis do Rio / Alertas
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row align-items-start">
+
+                                <!-- Coluna 1: Máxima e Inundação -->
+                                <div class="col-md-4 d-flex flex-column gap-2">
+                                    <div class="campo" id="campoMaxima">
+                                        <label class="form-label">Cota Máxima (m)</label>
+                                        <input type="number" step="0.01" id="cotaMaxima" class="form-control"
+                                            placeholder="ex: 30200">
+                                        <span class="msg-erro">Valor fora da hierarquia</span>
+                                    </div>
+                                    <div class="campo" id="campoInundacao">
+                                        <label class="form-label">Cota Inundação (m)</label>
+                                        <input type="number" step="0.01" id="cotaInundacao" class="form-control"
+                                            placeholder="ex: 5950">
+                                        <span class="msg-erro">Valor fora da hierarquia</span>
+                                    </div>
+                                    <hr class="my-1">
+                                    <div class="campo">
+                                        <label class="form-label">Cota RN ORTO</label>
+                                        <input type="number" step="0.01" class="form-control">
+                                    </div>
+                                </div>
+
+                                <!-- Coluna 2: Alerta e Atenção -->
+                                <div class="col-md-4 d-flex flex-column gap-2">
+                                    <div class="campo" id="campoAlerta">
+                                        <label class="form-label">Cota Alerta (m)</label>
+                                        <input type="number" step="0.01" id="cotaAlerta" class="form-control"
+                                            placeholder="ex: 4000">
+                                        <span class="msg-erro">Valor fora da hierarquia</span>
+                                    </div>
+                                    <div class="campo" id="campoAtencao">
+                                        <label class="form-label">Cota Atenção (m)</label>
+                                        <input type="number" step="0.01" id="cotaAtencao" class="form-control"
+                                            placeholder="ex: 3600">
+                                        <span class="msg-erro">Valor fora da hierarquia</span>
+                                    </div>
+                                    <hr class="my-1">
+                                    <div class="campo">
+                                        <label class="form-label">Cota RN ANA</label>
+                                        <input type="number" step="0.01" class="form-control">
+                                    </div>
+                                </div>
+
+                                <!-- Coluna 3: Régua -->
+                                <div class="col-md-4 d-flex flex-column align-items-center">
+                                    <span class="regua-topo" id="labelMax">—</span>
+                                    <div class="regua" id="regua">
+                                        <div class="marcador" id="mMaxima" style="background:#ccc; bottom:25%"></div>
+                                        <div class="marcador" id="mInundacao" style="background:#ccc; bottom:18%"></div>
+                                        <div class="marcador" id="mAlerta" style="background:#ccc; bottom:12%"></div>
+                                        <div class="marcador" id="mAtencao" style="background:#ccc; bottom:6%"></div>
+                                        <div class="pill" id="pillMaxima" style="bottom:25%"></div>
+                                        <div class="pill" id="pillInundacao" style="bottom:18%"></div>
+                                        <div class="pill" id="pillAlerta" style="bottom:12%"></div>
+                                        <div class="pill" id="pillAtencao" style="bottom:6%"></div>
+                                    </div>
+                                    <span class="regua-topo">0 m</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Bloco D: Dados de Controle -->
+                    <div class="card border-censipam-verde shadow-sm">
+                        <div class="card-header bg-censipam-verde text-white fw-semibold">
+                            Dados de Controle
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3">
+
+                                <!-- Data do Voo -->
+                                <div class="col-auto">
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <div class="d-flex align-items-center justify-content-center bg-censipam-azul text-white rounded-circle"
+                                            style="width: 28px; height: 28px; min-width: 28px;">
+                                            <span class="fs-6 fw-bold">4</span>
+                                        </div>
+                                        <label class="form-label text-censipam-azul fw-semibold m-0" for="data_voo">
+                                            Data do Voo
+                                        </label>
+                                    </div>
+                                    <input type="date" class="form-control border-censipam-azul" id="data_voo"
+                                        name="data_voo">
+                                </div>
+
+                                <!-- Data do Cadastro (readonly, preenchida via JS) -->
+                                <div class="col-auto">
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <div class="d-flex align-items-center justify-content-center bg-censipam-azul text-white rounded-circle"
+                                            style="width: 28px; height: 28px; min-width: 28px;">
+                                            <span class="fs-6 fw-bold">5</span>
+                                        </div>
+                                        <label class="form-label text-censipam-azul fw-semibold m-0"
+                                            for="data_cadastro">
+                                            Data do Cadastro
+                                        </label>
+                                    </div>
+                                    <input type="date" class="form-control bg-light" id="data_cadastro"
+                                        name="data_cadastro" readonly>
+                                    <small class="text-muted">Preenchido automaticamente</small>
+                                </div>
+
+                                <!-- Status -->
+                                <div class="col-auto">
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <div class="d-flex align-items-center justify-content-center bg-censipam-azul text-white rounded-circle"
+                                            style="width: 28px; height: 28px; min-width: 28px;">
+                                            <span class="fs-6 fw-bold">6</span>
+                                        </div>
+                                        <label class="form-label text-censipam-azul fw-semibold m-0" for="status">
+                                            Status
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="meuSwitch">
+                                        <label class="form-check-label" for="meuSwitch">Desativado / Ativado</label>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Botões de Ação do Formulário -->
+                    <div class="d-flex justify-content-end gap-2 mt-2">
+                        <button type="reset" class="btn btn-outline-secondary">Cancelar</button>
+                        <button type="submit" class="btn btn-censipam-azul px-4">Salvar Cadastro</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="interacao_interface.js"></script>
+    <script>
+        fetch('blocoA.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('bloco-A').innerHTML = data;
+            })
+            .catch(error => console.error('Erro ao carregar o Bloco A:', error));
+    </script>
+</body>
+
+</html>

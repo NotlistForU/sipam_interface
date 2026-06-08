@@ -1,3 +1,12 @@
+from django.shortcuts  import render
+from django.http import HttpResponse
+
+# def cadastro_dados(request):
+#     return HttpResponse("Controller funcionando")
+
+def cadastro_dados(request):
+     return render(request, 'cadastro_dados.html', {'titulo': 'Cadastro de Inundação Urbana'})
+
 
 # lisagem_dados():
 #   if request.method == 'GET:
