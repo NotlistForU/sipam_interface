@@ -3,7 +3,7 @@ from django.db import models
 class InundacaoUrbana(models.Model):
     id = models.IntegerField(primary_key=True);
     cd_geocodi = models.CharField(max_length=15, null=True, blank=True);
-    municipio = models.CharField(max_lenght=80, null=True, blank=True);
+    municipio = models.CharField(max_length=80, null=True, blank=True);
     cd_estacao = models.IntegerField(null=True, blank=True);
     longitude = models.DecimalField(
         max_digits=12,
@@ -28,7 +28,7 @@ class InundacaoUrbana(models.Model):
 
     data_voo = models.DateField(null=True, blank=True);
 
-    satus = models.BooleanField(null=True, blank=True);
+    status = models.BooleanField(null=True, blank=True);
     integrado = models.BooleanField(null=True, blank=True);
 
     class Meta:

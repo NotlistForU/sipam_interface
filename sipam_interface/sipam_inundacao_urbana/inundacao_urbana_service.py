@@ -1,3 +1,14 @@
+from sipam_interface.sipam_inundacao_urbana.inundacao_urbana_repository import InundacaoUrbanaRepositry
+
+class InundacaoUrbanaService:
+
+    def __init__(self, repository = InundacaoUrbanaRepositry):
+        self.repository = repository
+
+    
+    def listar_todos_dados(self):
+        return self.repository.listar_todos_dados()
+
 
 # lisagem_dados():
 #   registro = InundacaoUrbana.objects.all()

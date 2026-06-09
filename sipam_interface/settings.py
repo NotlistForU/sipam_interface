@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sipam_interface.sipam_inundacao_urbana',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'sipam_interface' / 'sipam_inundacao_urbana' / 'view',
+            BASE_DIR / 'sipam_interface' / 'sipam_inundacao_urbana' / 'templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -76,8 +77,12 @@ WSGI_APPLICATION = 'sipam_interface.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'hidrometeorologia',
+        'USER': 'CRPV',
+        'HOST': '172.22.5.54',
+        'PASSWORD': '1eD6t9QB',
+        'POST': '5432',
     }
 }
 
