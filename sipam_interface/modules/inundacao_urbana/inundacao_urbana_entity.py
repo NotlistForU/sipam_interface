@@ -32,8 +32,8 @@ class InundacaoUrbana(models.Model):
     integrado = models.BooleanField(null=True, blank=True);
 
     class Meta:
-        db_table = 'sipam_inundacao_urbana'
+        db_table = '"sipam"."sipam_inundacao_urbana"'
         managed = False ######
 
-    def __str__(self):
-        return self.municipio or f'Inundação Urbana {self.id}';
+    # def __str__(self):
+    #     return self.municipio or f'Inundação Urbana {self.id}';

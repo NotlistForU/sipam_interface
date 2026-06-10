@@ -17,8 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from sipam_interface.sipam_inundacao_urbana.inundacao_urbana_view import InundacaoUrbanaCadastroView
-from sipam_interface.sipam_inundacao_urbana.inundacao_urbana_view import InundacaoUrbanaListagemDadosView
+from sipam_interface.modules.inundacao_urbana.inundacao_urbana_controller import InundacaoUrbanaCadastroView
+from sipam_interface.modules.inundacao_urbana.inundacao_urbana_controller import InundacaoUrbanaListagemDadosView
 
 urlpatterns = [
     path('admin/', admin.site.urls),

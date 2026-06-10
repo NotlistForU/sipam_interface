@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'sipam_interface.sipam_inundacao_urbana',
+    'sipam_interface.modules',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +56,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'sipam_interface' / 'sipam_inundacao_urbana' / 'templates',
+            BASE_DIR / 'sipam_interface' / 'modules' / 'inundacao_urbana' / 'templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {

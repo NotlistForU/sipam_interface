@@ -1,20 +1,38 @@
 /* Variáveis globais para facilitar a manutenção */
 :root {
-  --censipam-verde: #008542;   /* Tom padrão do verde institucional */
-  --censipam-azul: #06407a;    /* Tom padrão do azul marinho */
+  --censipam-verde: #008542;
+  --censipam-verde-claro: #bbf7d0;
+  /* Tom padrão do verde institucional */
+  --censipam-azul: #06407a;
+  /* Tom padrão do azul marinho */
 }
 
 /* Classes de Texto (Ex: text-censipam-verde) */
-.text-censipam-verde { color: var(--censipam-verde) !important; }
-.text-censipam-azul { color: var(--censipam-azul) !important; }
+.text-censipam-verde {
+  color: var(--censipam-verde) !important;
+}
+
+.text-censipam-azul {
+  color: var(--censipam-azul) !important;
+}
 
 /* Classes de Fundo (Ex: bg-censipam-azul) */
-.bg-censipam-verde { background-color: var(--censipam-verde) !important; }
-.bg-censipam-azul { background-color: var(--censipam-azul) !important; }
+.bg-censipam-verde {
+  background-color: var(--censipam-verde) !important;
+}
+
+.bg-censipam-azul {
+  background-color: var(--censipam-azul) !important;
+}
 
 /* Classes de Bordas (Ex: border-censipam-verde) */
-.border-censipam-verde { border-color: var(--censipam-verde) !important; }
-.border-censipam-azul { border-color: var(--censipam-azul) !important; }
+.border-censipam-verde {
+  border-color: var(--censipam-verde) !important;
+}
+
+.border-censipam-azul {
+  border-color: var(--censipam-azul) !important;
+}
 
 /* Botões Customizados no padrão do Bootstrap */
 .btn-censipam-verde {
@@ -22,9 +40,11 @@
   background-color: var(--censipam-verde);
   border-color: var(--censipam-verde);
 }
+
 .btn-censipam-verde:hover {
   color: #fff;
-  background-color: #006e36; /* Tom ligeiramente mais escuro para o hover */
+  background-color: #006e36;
+  /* Tom ligeiramente mais escuro para o hover */
   border-color: #006e36;
 }
 
@@ -33,20 +53,43 @@
   background-color: var(--censipam-azul);
   border-color: var(--censipam-azul);
 }
+
 .btn-censipam-azul:hover {
   color: #fff;
-  background-color: #002244; /* Tom ligeiramente mais escuro para o hover */
+  background-color: #002244;
+  /* Tom ligeiramente mais escuro para o hover */
   border-color: #002244;
 }
 
 /* =--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=- */
 /* Niveis das cotas */
-.campo { display: flex; flex-direction: column; gap: 4px; }
-.campo .msg-erro { font-size: 11px; color: #E24B4A; display: none; }
-.campo.invalido .msg-erro { display: block; }
-.campo.invalido .form-control { border-color: #E24B4A; background: #fff5f5; }
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 
-.regua-topo { font-size: 11px; color: #888; margin-bottom: 4px; }
+.campo .msg-erro {
+  font-size: 11px;
+  color: #E24B4A;
+  display: none;
+}
+
+.campo.invalido .msg-erro {
+  display: block;
+}
+
+.campo.invalido .form-control {
+  border-color: #E24B4A;
+  background: #fff5f5;
+}
+
+.regua-topo {
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 4px;
+}
+
 .regua {
   position: relative;
   width: 32px;
@@ -55,6 +98,7 @@
   border: 1px solid #ddd;
   border-radius: 16px;
 }
+
 .marcador {
   position: absolute;
   left: 50%;
@@ -63,12 +107,14 @@
   height: 18px;
   border-radius: 50%;
   border: 2.5px solid white;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
   transition: bottom 0.25s, background 0.25s;
 }
+
 .marcador.erro-visual {
-  box-shadow: 0 0 0 3px rgba(226,75,74,0.25);
+  box-shadow: 0 0 0 3px rgba(226, 75, 74, 0.25);
 }
+
 .pill {
   position: absolute;
   left: calc(100% + 10px);
@@ -79,4 +125,64 @@
   color: #555;
   transition: bottom 0.25s;
   pointer-events: none;
+}
+
+/* ==================== NOVO ESTILO DA TABELA CENSIPAM ==================== */
+.table-censipam {
+  border: 1px solid #c8d6e5;
+  /* Borda externa ligeiramente mais definida */
+  background: white;
+}
+
+/* Cabeçalho com o Azul Institucional */
+.table-censipam thead th {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--censipam-verde-claro) !important;
+  /* Aplica o azul do :root */
+  color: var(--censipam-azul) !important;
+  /* Texto branco para alto contraste */
+  font-weight: 600;
+  text-transform: uppercase;
+  /* Deixa os títulos das colunas mais imponentes */
+  font-size: 13px;
+  /* Tamanho ideal para tabelas densas */
+  letter-spacing: 0.5px;
+  padding: 12px 16px;
+  /* Mais respiro para o cabeçalho */
+}
+
+/* Efeito Zebra usando o Verde Institucional (Suave) */
+.table-censipam tbody tr:nth-child(even) td {
+  background-color: rgba(0, 133, 66, 0.04) !important;
+  /* 4% de opacidade do seu verde */
+}
+
+/* Efeito Hover ao passar o mouse (Azul sutil) */
+.table-censipam tbody tr:hover td {
+  background-color: rgba(6, 64, 122, 0.08) !important;
+  /* 8% de opacidade do seu azul */
+  color: var(--censipam-azul);
+  /* O texto da linha ganha um tom azulado leve */
+  transition: background-color 0.15s ease;
+  /* Transição suave visualmente */
+}
+
+/* Alinhamento e espaçamento das células de dados */
+.table-censipam td {
+  vertical-align: middle;
+  white-space: nowrap;
+  padding: 10px 16px;
+  /* Ajuste para não espremer os números das cotas */
+  color: #333333;
+  /* Cinza escuro confortável para leitura prolongada */
+  font-size: 14px;
+}
+
+/* Bordas internas discretas */
+.table-censipam td,
+.table-censipam th {
+  border-color: #e2e8f0;
+  /* Tom cinza-azulado bem limpo */
 }

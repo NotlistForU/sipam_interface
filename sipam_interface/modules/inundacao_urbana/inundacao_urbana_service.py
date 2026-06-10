@@ -1,8 +1,8 @@
-from sipam_interface.sipam_inundacao_urbana.inundacao_urbana_repository import InundacaoUrbanaRepositry
+from sipam_interface.modules.inundacao_urbana.inundacao_urbana_repository import InundacaoUrbanaRepository
 
 class InundacaoUrbanaService:
 
-    def __init__(self, repository = InundacaoUrbanaRepositry):
+    def __init__(self, repository = InundacaoUrbanaRepository()):
         self.repository = repository
 
     
