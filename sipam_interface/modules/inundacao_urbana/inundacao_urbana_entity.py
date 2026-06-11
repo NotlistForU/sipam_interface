@@ -25,6 +25,7 @@ class InundacaoUrbana(models.Model):
     cota_atencao = models.FloatField(null=True, blank=True);
     cota_alerta = models.FloatField(null=True, blank=True);
     cota_inundacao = models.FloatField(null=True, blank=True);
+    cota_maxima = models.FloatField(null=True, blank=True);
 
     data_voo = models.DateField(null=True, blank=True);
 

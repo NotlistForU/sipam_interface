@@ -1,10 +1,73 @@
-/* Variáveis globais para facilitar a manutenção */
 :root {
-  --censipam-verde: #008542;
-  --censipam-verde-claro: #bbf7d0;
-  /* Tom padrão do verde institucional */
-  --censipam-azul: #06407a;
-  /* Tom padrão do azul marinho */
+  --bg: #f5f7fa;
+  --card: #ffffff;
+  --card-secondary: #ffffff;
+  --text: #212529;
+  --text-muted: #6c757d;
+  --border: #dee2e6;
+  --table-head: #f8f9fa;
+  --hover: #f1f5f9;
+  --censipam-verde: #198754;
+}
+
+/* Tema Claro */
+.theme-light {
+  --bg: #f5f7fa;
+  --card: #ffffff;
+  --card-secondary: #ffffff;
+  --text: #212529;
+  --text-muted: #6c757d;
+  --border: #dee2e6;
+  --table-head: #f8f9fa;
+  --hover: #f1f5f9;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: .3s;
+}
+
+.card {
+  background: var(--card);
+  color: var(--text);
+}
+
+.card-header {
+  background: var(--card) !important;
+  color: var(--text);
+  border-color: var(--border) !important;
+}
+
+.table {
+  color: var(--text);
+}
+
+.table thead th {
+  background: var(--table-head);
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+
+.table td {
+  border-color: var(--border);
+}
+
+.table tbody tr:hover {
+  background: var(--hover);
+}
+
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+/* Cards de estatística */
+.stats-card {
+  background: var(--card-secondary);
+}
+
+.fs-7 {
+  font-size: 0.75rem;
 }
 
 /* Classes de Texto (Ex: text-censipam-verde) */
@@ -32,33 +95,6 @@
 
 .border-censipam-azul {
   border-color: var(--censipam-azul) !important;
-}
-
-/* Botões Customizados no padrão do Bootstrap */
-.btn-censipam-verde {
-  color: #fff;
-  background-color: var(--censipam-verde);
-  border-color: var(--censipam-verde);
-}
-
-.btn-censipam-verde:hover {
-  color: #fff;
-  background-color: #006e36;
-  /* Tom ligeiramente mais escuro para o hover */
-  border-color: #006e36;
-}
-
-.btn-censipam-azul {
-  color: #fff;
-  background-color: var(--censipam-azul);
-  border-color: var(--censipam-azul);
-}
-
-.btn-censipam-azul:hover {
-  color: #fff;
-  background-color: #002244;
-  /* Tom ligeiramente mais escuro para o hover */
-  border-color: #002244;
 }
 
 /* =--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=-=--=- */
@@ -127,62 +163,83 @@
   pointer-events: none;
 }
 
-/* ==================== NOVO ESTILO DA TABELA CENSIPAM ==================== */
-.table-censipam {
-  border: 1px solid #c8d6e5;
-  /* Borda externa ligeiramente mais definida */
-  background: white;
+/* ==================== ESTILO DA TABELA Listagem Dados inundacao ==================== */
+.tabela-estacoes table {
+  min-width: 1200px;
 }
 
-/* Cabeçalho com o Azul Institucional */
-.table-censipam thead th {
+.tabela-estacoes thead th {
   position: sticky;
   top: 0;
-  z-index: 100;
-  background-color: var(--censipam-verde-claro) !important;
-  /* Aplica o azul do :root */
-  color: var(--censipam-azul) !important;
-  /* Texto branco para alto contraste */
-  font-weight: 600;
+  z-index: 10;
+
+  background: #f8f9fa;
+  color: #6c757d;
+
+  font-size: .75rem;
+  font-weight: 700;
   text-transform: uppercase;
-  /* Deixa os títulos das colunas mais imponentes */
-  font-size: 13px;
-  /* Tamanho ideal para tabelas densas */
-  letter-spacing: 0.5px;
-  padding: 12px 16px;
-  /* Mais respiro para o cabeçalho */
+  letter-spacing: .5px;
+
+  border-bottom: 2px solid #dee2e6;
+  padding: 1rem;
 }
 
-/* Efeito Zebra usando o Verde Institucional (Suave) */
-.table-censipam tbody tr:nth-child(even) td {
-  background-color: rgba(0, 133, 66, 0.04) !important;
-  /* 4% de opacidade do seu verde */
+.tabela-estacoes tbody td {
+  padding: .9rem 1rem;
+  border-color: #f1f3f5;
 }
 
-/* Efeito Hover ao passar o mouse (Azul sutil) */
-.table-censipam tbody tr:hover td {
-  background-color: rgba(6, 64, 122, 0.08) !important;
-  /* 8% de opacidade do seu azul */
-  color: var(--censipam-azul);
-  /* O texto da linha ganha um tom azulado leve */
-  transition: background-color 0.15s ease;
-  /* Transição suave visualmente */
+.tabela-estacoes tbody tr {
+  transition: all .2s ease;
 }
 
-/* Alinhamento e espaçamento das células de dados */
-.table-censipam td {
-  vertical-align: middle;
-  white-space: nowrap;
-  padding: 10px 16px;
-  /* Ajuste para não espremer os números das cotas */
-  color: #333333;
-  /* Cinza escuro confortável para leitura prolongada */
+.tabela-estacoes tbody tr:hover {
+  background: #000000;
+  transform: scale(1.002);
+}
+
+.card {
+  border-radius: 16px;
+}
+
+.badge {
+  font-weight: 600;
+}
+
+.bg-orange {
+  background-color: #fd7e14;
+}
+
+.bg-yellow {
+  background-color: #e6a817;
+  ;
+}
+
+
+/*  */
+.btn-nuhidro {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: #ffffff;
+  color: #1a5c9a;
+  border: 1.5px solid #1a5c9a;
+  border-radius: 6px;
   font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
 }
 
-/* Bordas internas discretas */
-.table-censipam td,
-.table-censipam th {
-  border-color: #e2e8f0;
-  /* Tom cinza-azulado bem limpo */
+.btn-nuhidro:hover {
+  background: #e8f1fb;
+  box-shadow: 0 2px 8px rgba(26, 92, 154, 0.15);
+}
+
+.btn-nuhidro:active {
+  background: #cfe0f4;
+  transform: scale(0.98);
 }
