@@ -26,7 +26,33 @@ class InundacaoUrbanaListagemDadosView(View):
      def get(self, request) -> HttpResponse:
           service = InundacaoUrbanaService()
           dados = service.listar_todos_dados()
-          return render(request, 'listagem_dados.html', {'dados': dados})
+          num_dados = len(dados)
+          num_estacoes = sum(1 for item in dados if item.cd_estacao)
+          num_municipios = len(set(item.municipio for item in dados))
+
+          num_integrado = sum(1 for item in dados if item.integrado)
+          num_cota_atencao = sum(1 for item in dados if item.cota_atencao)
+          num_cota_alerta = sum(1 for item in dados if item.cota_alerta)
+          num_cota_inundacao = sum(1 for item in dados if item.cota_inundacao)
+          
+          if num_dados > 0 :
+               por_cent_integrado = (num_integrado * 100) / num_dados
+          else:
+               por_cent_integrado = 0.0
+
+          return render(
+               request, 'listagem_dados/componentes/index.html', 
+                        {
+                             'dados': dados,
+                             'num_dados': num_dados, 
+                             'num_municipios': num_municipios,
+                             'num_estacoes': num_estacoes,
+                             'num_integrado': num_integrado,
+                             'num_cota_atencao': num_cota_atencao,
+                             'num_cota_alerta': num_cota_alerta,
+                             'num_cota_inundacao': num_cota_inundacao,
+                             'por_cent_integrado': por_cent_integrado})
+          # return render(request, 'listagem_dados.html', {'dados': dados})
 # lisagem_dados():
 #   if request.method == 'GET:
 #       registros = service.listagem_dados()

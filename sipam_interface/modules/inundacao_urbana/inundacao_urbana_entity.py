@@ -31,6 +31,7 @@ class InundacaoUrbana(models.Model):
 
     status = models.BooleanField(null=True, blank=True);
     integrado = models.BooleanField(null=True, blank=True);
+    cidade_id = models.BigIntegerField(null=True, blank=True);
 
     class Meta:
         db_table = '"sipam"."sipam_inundacao_urbana"'

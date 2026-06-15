@@ -5,209 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        .municipio-cell {
+            max-width: 180px;
+            white-space: normal;
+        }
+
+        /* Animação suave para a seta */
+        .icon-rotate {
+            transition: transform 0.3s ease-in-out;
+            display: inline-block;
+        }
+
+        /* Quando a linha (accordion-toggle) estiver expandida (aria-expanded="true"), rotaciona a seta */
+        .accordion-toggle[aria-expanded="true"] .icon-rotate {
+            transform: rotate(90deg);
+        }
+    </style>
 </head>
 
 <body class="theme-ligh">
-    <div class="d-flex justify-content-between m-4">
-        <div class="d-flex gap-2">
-            <div>
-                <div class="bg-success rounded d-inline-flex align-items-center justify-content-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="50" height="50">
-                        <path
-                            d="m 184.07407,363.06667 c -14.72222,0 -25.55555,-2.95556 -32.5,-8.86667 -6.94444,-5.91296 -15,-8.86852 -24.16666,-8.86852 -9.16667,0 -17.43056,2.95556 -24.79167,8.86852 -7.36111,5.91111 -16.874999,8.86667 -28.541666,8.86667 v -26.60371 c 9.444445,-0.88703 17.013889,-4.06481 22.708333,-9.53333 5.694443,-5.46852 15.902783,-8.20185 30.625003,-8.20185 3.05555,0 6.18055,0.22037 9.375,0.66481 3.19444,0.4426 6.04166,1.10741 8.54166,1.99445 l -21.25,-82.02778 L 98.240741,273.5 78.657407,256.65185 203.65741,92.592593 l 185.41666,75.378147 -9.16666,24.83111 -38.33334,-15.51963 35.83334,142.33259 c 5,2.95556 10.06852,6.50186 15.20926,10.64075 5.13889,4.13888 10.06852,6.05925 14.79074,5.76481 v 27.0463 c -11.66667,0 -21.17963,-3.69445 -28.5426,-11.08519 -7.35925,-7.38889 -15.62407,-11.08333 -24.79074,-11.08333 -9.16666,0 -17.22222,3.69444 -24.16666,11.08333 -6.94445,7.39074 -17.77778,11.08519 -32.5,11.08519 -14.72222,0 -25.55556,-2.95556 -32.5,-8.86667 -6.94445,-5.91296 -15,-8.86852 -24.16667,-8.86852 -9.16667,0 -17.22222,2.95556 -24.16667,8.86852 -6.94444,5.91111 -17.77777,8.86667 -32.5,8.86667 z m 0,-26.60371 c 8.61112,0 16.31852,-2.58703 23.12408,-7.75926 6.80741,-5.17222 14.6537,-8.35 23.54259,-9.53333 l -15.41667,-60.30185 56.66667,-15.96296 22.91667,93.5574 c 10.55555,1.18334 19.23518,-2.06852 26.04074,-9.7537 6.80555,-7.68704 16.45926,-11.82407 28.95926,-12.41667 l -37.5,-148.98222 -100.41667,-41.2363 -68.33333,89.56667 30.83333,121.49259 c 1.94445,0.59074 3.61111,0.96111 5,1.10741 1.38889,0.14815 2.91667,0.22222 4.58333,0.22222 z"
-                            fill="#ffffff" />
-                    </svg>
-                </div>
 
-            </div>
-            <div class="d-flex flex-column">
-                <span class="fw-bold">
-                    Inundação Urbana
-                </span>
-                <span class="">sipam.sipam_inundacao_urbana</span>
+    {% block content %}
+    {% endblock %}
 
-            </div>
-        </div>
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/inundacao_urbana/listagem_dados.js"></script>
 
-        <button class="btn-nuhidro bg-white rounded-4 text-dark">
-            <i class="bi bi-plus"></i> Novo Registro
-        </button>
-
-    </div>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 m-4">
-        <!-- Card 1 -->
-        <div class="col">
-            <div class="stats-card d-flex flex-column rounded-4 p-2 h-100" style="border-left: 6px solid #198754;">
-                <span><i class="bi bi-broadcast-pin"></i> Total de estações</span>
-                <h4 class="m-0">{{ dados|length }}</h4>
-                <span class="fs-7">em 21 municípios</span>
-            </div>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="col">
-            <div class="stats-card d-flex flex-column  rounded-4 p-2 h-100"
-                style="border-left: 6px solid #015C91 !important;">
-                <span><i class="bi bi-link-45deg"></i> integradas</span>
-                <h4>65</h4>
-                <span class="fs-7">43% do total</span>
-            </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="col">
-            <div class="stats-card d-flex flex-column   rounded-4 p-2 h-100" style="border-left: 6px solid #e6a817;">
-                <span><i class="bi bi-exclamation-triangle-fill"></i> cota atenção</span>
-                <h4>17</h4>
-                <span class="fs-7">acima da normalidade</span>
-            </div>
-        </div>
-
-        <!-- Card 4 -->
-        <div class="col">
-            <div class="stats-card d-flex flex-column   rounded-4 p-2 h-100" style="border-left: 6px solid #d85a30;">
-                <span><i class="bi bi-bell-fill"></i> cota alerta</span>
-                <h4>5</h4>
-                <span class="fs-7">proximo de uma inundação</span>
-            </div>
-        </div>
-
-        <!-- Card 5 -->
-        <div class="col">
-            <div class="stats-card d-flex flex-column   rounded-4 p-2 h-100" style="border-left: 6px solid #ff0100">
-                <span><i class="bi bi-water"></i> cota Inundação</span>
-                <h4>2</h4>
-                <span class="fs-7">acima de áreas habitadas</span>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="container-fluid py-4">
-
-        <div class="card border-0 shadow-sm">
-            <div class="card-header bg-white border-bottom py-3">
-                <div class="d-flex align-items-center justify-content-between">
-                    <h5 class="mb-0 fw-semibold">
-                        <i class="bi bi-broadcast-pin me-2 text-primary"></i>
-                        Estações de Monitoramento
-                    </h5>
-
-                    <span class="badge rounded-pill bg-primary-subtle text-primary">
-                        {{ dados|length }} registros
-                    </span>
-                </div>
-            </div>
-
-            <div class="table-responsive tabela-estacoes">
-                <table class="table align-middle mb-0">
-
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>ID</th>
-                            <th>Município</th>
-                            <th>Estação</th>
-                            <th>Longitude</th>
-                            <th>Latitude</th>
-                            <th>Atenção</th>
-                            <th>Alerta</th>
-                            <th>Inundação</th>
-                            <th>Máxima</th>
-                            <th>Status</th>
-                            <th>Integrado</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {% for item in dados %}
-                        <tr>
-                            <td>
-                                <i class="bi bi-chevron-right"></i>
-                            </td>
-                            <td>
-                                <span class="fw-semibold">
-                                    #{{ item.id }}
-                                </span>
-                            </td>
-
-                            <td>
-                                <div class="fw-semibold text-dark">
-                                    {{ item.municipio }}
-                                </div>
-                                <small class="text-muted">
-                                    cd_geocodi:
-                                    {{ item.cd_geocodi }}
-                                </small>
-                            </td>
-
-                            <td>
-                                <span class="badge rounded-pill bg-light text-dark border">
-                                    {{ item.cd_estacao }}
-                                </span>
-                            </td>
-
-                            <td>{{ item.longitude }}</td>
-                            <td>{{ item.latitude }}</td>
-
-                            <td>
-                                <span class="badge bg-yellow text-white">
-                                    {{ item.cota_atencao }} m
-                                </span>
-                            </td>
-
-                            <td>
-                                <span class="badge bg-orange text-white">
-                                    {{ item.cota_alerta }} m
-                                </span>
-                            </td>
-
-                            <td>
-                                <span class="badge bg-danger">
-                                    {{ item.cota_inundacao }} m
-                                </span>
-                            </td>
-
-                            <td>
-                                <strong class="text-danger">
-                                    {{ item.cota_maxima }} m
-                                </strong>
-                            </td>
-
-                            <td>
-                                {% if item.status == 'Ativo' or item.status == 1 %}
-                                <span class="badge bg-success-subtle text-success">
-                                    <i class="bi bi-check-circle-fill me-1"></i>
-                                    Ativo
-                                </span>
-                                {% else %}
-                                <span class="badge bg-danger-subtle text-danger">
-                                    <i class="bi bi-x-circle-fill me-1"></i>
-                                    Inativo
-                                </span>
-                                {% endif %}
-                            </td>
-
-                            <td>
-                                {% if item.integrado %}
-                                <i class="bi bi-check-circle-fill text-success fs-5"></i>
-                                {% else %}
-                                <i class="bi bi-dash-circle-fill text-secondary fs-5"></i>
-                                {% endif %}
-                            </td>
-
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-
-                </table>
-            </div>
-        </div>
-
-    </div>
 </body>
 
 </html>

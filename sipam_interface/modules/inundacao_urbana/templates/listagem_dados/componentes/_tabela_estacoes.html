@@ -1,0 +1,283 @@
+<div class="container-fluid py-4">
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white border-bottom py-3">
+            <div class="d-flex align-items-center justify-content-between">
+                <h5 class="mb-0 fw-semibold">
+                    <i class="bi bi-broadcast-pin me-2 text-primary"></i>
+                    Estações de Monitoramento
+                </h5>
+
+                <span class="badge rounded-pill bg-primary-subtle text-primary">
+                    {{ dados|length }} registros
+                </span>
+            </div>
+        </div>
+        <div class="table-responsive tabela-estacoes">
+            <table class="table align-middle mb-0" style="table-layout: fixed;">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>
+                            <div>ID</div>
+                        </th>
+                        <th class="col-main col-municipio">
+                            <div>Município</div>
+                        </th>
+                        <th class="col-main col-estacao">Estação</th>
+                        <th>Atenção</th>
+                        <th>Alerta</th>
+                        <th>Inundação</th>
+                        <th>Máxima</th>
+                        <th class="col-main col-data-voo">Data Voo</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for item in dados %}
+                    <!-- Linha Principal -->
+                    <tr data-bs-toggle="collapse" data-bs-target="#detalhes-{{ item.id }}" aria-expanded="false"
+                        class="accordion-toggle" style="cursor: pointer;">
+                        <td>
+                            <i class="bi bi-chevron-right icon-rotate transition-base"></i>
+                        </td>
+                        <td>
+                            <div><span class="fw-semibold">#{{ item.id }}</span></div>
+                        </td>
+                        <td class="municipio-cell col-main col-municipio">
+                            <div class="fw-semibold text-dark">{{ item.municipio }}</div>
+                        </td>
+                        <td class="col-main col-estacao">
+                            <span class="badge rounded-pill bg-light text-dark border">{{ item.cd_estacao }}</span>
+                        </td>
+                        <td>
+                            <span class="badge bg-yellow text-white">{{ item.cota_atencao }} m</span>
+                        </td>
+                        <td>
+                            <span class="badge bg-orange text-white">{{ item.cota_alerta }} m</span>
+                        </td>
+                        <td>
+                            <span class="badge bg-danger">{{ item.cota_inundacao }} m</span>
+                        </td>
+                        <td>
+                            <strong class="text-danger">{{ item.cota_maxima }} m</strong>
+                        </td>
+                        <td class="col-main col-data-voo">
+                            <span class="">{{ item.data_voo }}</span>
+                        </td>
+                        <td>
+                            {% if item.status == 'Ativo' or item.status == 1 %}
+                            <span class="badge bg-success-subtle text-success">
+                                <i class="bi bi-check-circle-fill me-1"></i> Ativo
+                            </span>
+                            {% else %}
+                            <span class="badge bg-danger-subtle text-danger">
+                                <i class="bi bi-x-circle-fill me-1"></i> Inativo
+                            </span>
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    <!-- Linha de Detalhes Oculta -->
+                    <tr class="bg-light">
+                        <td colspan="10" class="p-0 border-top-0">
+                            <div class="collapse" id="detalhes-{{ item.id }}">
+                                <div
+                                    class="p-3 ms-3 mb-2 border-start border-4 border-primary bg-white shadow-sm rounded-end">
+                                    <p class="text-muted small mb-2">
+                                        <i class="bi bi-info-circle me-1"></i> Detalhes adicionais da estação
+                                        <strong>{{ item.cd_estacao }}</strong>
+                                    </p>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-sm mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <!-- Colunas transferíveis (ocultas por padrão aqui embaixo) -->
+                                                    <th class="col-detail col-municipio" style="display: none;">
+                                                        Município</th>
+                                                    <th class="col-detail col-estacao" style="display: none;">
+                                                        Estação</th>
+                                                    <th class="col-detail col-data-voo" style="display: none;">
+                                                        Data Voo
+                                                    </th>
+
+                                                    <!-- Colunas fixas (que já estavam aí) -->
+                                                    <th>Longitude</th>
+                                                    <th>Latitude</th>
+                                                    <th>Cidade ID</th>
+                                                    <th>Cota RN ANA</th>
+                                                    <th>Cota RN ORTO</th>
+                                                    <th>
+                                                        <div class="text-center">Integrado</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <!-- Colunas transferíveis (ocultas por padrão aqui embaixo) -->
+                                                    <td class="col-detail col-municipio" style="display: none;">
+                                                        {{ item.municipio }}</td>
+                                                    <td class="col-detail col-estacao" style="display: none;">
+                                                        {{ item.cd_estacao }} m
+                                                    </td>
+                                                    <td class="col-detail col-data-voo" style="display: none;">
+                                                        {{ item.data_voo }}
+                                                    </td>
+
+                                                    <!-- Colunas fixas -->
+                                                    <td>{{ item.longitude }}</td>
+                                                    <td>{{ item.latitude }}</td>
+                                                    <td>{{ item.cidade_id }}</td>
+                                                    <td>{{ item.cota_rn_ana }}</td>
+                                                    <td>{{ item.cota_rn_orto }}</td>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            {% if item.integrado %}
+                                                            <i class="bi bi-check-circle-fill text-success fs-5"></i>
+                                                            {% else %}
+                                                            <i class="bi bi-dash-circle-fill text-secondary fs-5"></i>
+                                                            {% endif %}
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!-- 
+            <div class="table-responsive tabela-estacoes">
+                <table class="table align-middle mb-0" style="table-layout: fixed;">
+
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>
+                                <div>ID</div>
+                            </th>
+                            <th>
+                                <div>
+                                    Município
+                                </div>
+                            </th>
+                            <th>Estação</th>
+                            <th>Atenção</th>
+                            <th>Alerta</th>
+                            <th>Inundação</th>
+                            <th>Máxima</th>
+                            <th>Status</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for item in dados %}
+                        <tr data-bs-toggle="collapse" data-bs-target="#detalhes-{{ item.id }}" aria-expanded="false"
+                            class="accordion-toggle" style="cursor: pointer;">
+                            <td>
+                                <i class="bi bi-chevron-right icon-rotate transition-base"></i>
+                            </td>
+                            <td>
+                                <div>
+                                    <span class="fw-semibold">#{{ item.id }}</span>
+                                </div>
+                            </td>
+                            <td class="municipio-cell">
+                                <div class="fw-semibold text-dark">{{ item.municipio }}</div>
+                            </td>
+                            <td>
+                                <span class="badge rounded-pill bg-light text-dark border">{{ item.cd_estacao }}</span>
+                            </td>
+                            <td>
+                                <span class="badge bg-yellow text-white">{{ item.cota_atencao }} m</span>
+                            </td>
+                            <td>
+                                <span class="badge bg-orange text-white">{{ item.cota_alerta }} m</span>
+                            </td>
+                            <td>
+                                <span class="badge bg-danger">{{ item.cota_inundacao }} m</span>
+                            </td>
+                            <td>
+                                <strong class="text-danger">{{ item.cota_maxima }} m</strong>
+                            </td>
+                            <td>
+                                {% if item.status == 'Ativo' or item.status == 1 %}
+                                <span class="badge bg-success-subtle text-success">
+                                    <i class="bi bi-check-circle-fill me-1"></i> Ativo
+                                </span>
+                                {% else %}
+                                <span class="badge bg-danger-subtle text-danger">
+                                    <i class="bi bi-x-circle-fill me-1"></i> Inativo
+                                </span>
+                                {% endif %}
+                            </td>
+                        </tr>
+
+                        <tr class="bg-light">
+                            <td colspan="9" class="p-0 border-top-0">
+                                <div class="collapse" id="detalhes-{{ item.id }}">
+
+                                    <div
+                                        class="p-3 ms-3 mb-2 border-start border-4 border-primary bg-white shadow-sm rounded-end">
+
+                                        <p class="text-muted small mb-2">
+                                            <i class="bi bi-info-circle me-1"></i> Detalhes adicionais da estação
+                                            <strong>{{ item.cd_estacao }}</strong>
+                                        </p>
+
+                                        <table class="table table-sm mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Longitude</th>
+                                                    <th>Latitude</th>
+                                                    <th>Cidade ID</th>
+                                                    <th>Cota RN ANA</th>
+                                                    <th>Cota RN ORTO</th>
+                                                    <th>Data Voo</th>
+                                                    <th>
+                                                        <div class="text-center">Integrado</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>{{ item.longitude }}</td>
+                                                    <td>{{ item.latitude }}</td>
+                                                    <td>{{ item.cidade_id }}</td>
+                                                    <td>{{ item.cota_rn_ana }}</td>
+                                                    <td>{{ item.cota_rn_orto }}</td>
+                                                    <td>
+                                                        <div>{{ item.data_voo }}</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            {% if item.integrado %}
+                                                            <i class="bi bi-check-circle-fill text-success fs-5"></i>
+                                                            {% else %}
+                                                            <i class="bi bi-dash-circle-fill text-secondary fs-5"></i>
+                                                            {% endif %}
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+                 -->
+    </div>
+</div>

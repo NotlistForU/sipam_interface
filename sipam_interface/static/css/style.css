@@ -195,8 +195,9 @@ body {
 }
 
 .tabela-estacoes tbody tr:hover {
-  background: #000000;
+  box-shadow: 0 0 0 1px rgb(13, 110, 253);
   transform: scale(1.002);
+  cursor: pointer;
 }
 
 .card {
@@ -242,4 +243,13 @@ body {
 .btn-nuhidro:active {
   background: #cfe0f4;
   transform: scale(0.98);
+}
+
+.collapse {
+  transition: none !important;
+}
+
+.collapsing {
+  transition: none !important;
+  display: none;
 }
