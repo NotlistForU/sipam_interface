@@ -17,7 +17,7 @@
             <table class="table align-middle mb-0" style="table-layout: fixed;">
                 <thead>
                     <tr>
-                        <th></th>
+                        <th style="width: 50px;"></th>
                         <th>
                             <div>ID</div>
                         </th>
@@ -39,7 +39,7 @@
                     <!-- Linha Principal -->
                     <tr data-bs-toggle="collapse" data-bs-target="#detalhes-{{ item.id }}" aria-expanded="false"
                         class="accordion-toggle" style="cursor: pointer;">
-                        <td>
+                        <td style="width: 50px;">
                             <i class="bi bi-chevron-right icon-rotate transition-base"></i>
                         </td>
                         <td>
@@ -52,16 +52,16 @@
                             <span class="badge rounded-pill bg-light text-dark border">{{ item.cd_estacao }}</span>
                         </td>
                         <td>
-                            <span class="badge bg-yellow text-white">{{ item.cota_atencao }} m</span>
+                            <span class="badge bg-yellow text-white">{{ item.cota_atencao_formatada }}</span>
                         </td>
                         <td>
-                            <span class="badge bg-orange text-white">{{ item.cota_alerta }} m</span>
+                            <span class="badge bg-orange text-white">{{ item.cota_alerta_formatada }}</span>
                         </td>
                         <td>
-                            <span class="badge bg-danger">{{ item.cota_inundacao }} m</span>
+                            <span class="badge bg-danger">{{ item.cota_inundacao_formatada }}</span>
                         </td>
                         <td>
-                            <strong class="text-danger">{{ item.cota_maxima }} m</strong>
+                            <strong class="text-danger">{{ item.cota_maxima }}</strong>
                         </td>
                         <td class="col-main col-data-voo">
                             <span class="">{{ item.data_voo }}</span>
@@ -83,32 +83,35 @@
                     <tr class="bg-light">
                         <td colspan="10" class="p-0 border-top-0">
                             <div class="collapse" id="detalhes-{{ item.id }}">
-                                <div
-                                    class="p-3 ms-3 mb-2 border-start border-4 border-primary bg-white shadow-sm rounded-end">
+                                <div class="p-3 border-start border-4 border-primary bg-white shadow-sm rounded-end">
                                     <p class="text-muted small mb-2">
-                                        <i class="bi bi-info-circle me-1"></i> Detalhes adicionais da estação
-                                        <strong>{{ item.cd_estacao }}</strong>
+                                        <i class="bi bi-info-circle me-1"></i> Detalhes adicionais
+                                        <strong>cd_estacao {{ item.cd_estacao }}</strong>
+
                                     </p>
 
                                     <div class="table-responsive">
                                         <table class="table table-sm mb-0">
                                             <thead>
-                                                <tr>
+                                                <tr class="detalhes">
                                                     <!-- Colunas transferíveis (ocultas por padrão aqui embaixo) -->
-                                                    <th class="col-detail col-municipio" style="display: none;">
+                                                    <th class="col-detail col-municipio text-center"
+                                                        style="display: none;">
                                                         Município</th>
-                                                    <th class="col-detail col-estacao" style="display: none;">
+                                                    <th class="col-detail col-estacao text-center"
+                                                        style="display: none;">
                                                         Estação</th>
-                                                    <th class="col-detail col-data-voo" style="display: none;">
+                                                    <th class="col-detail col-data-voo text-center"
+                                                        style="display: none;">
                                                         Data Voo
                                                     </th>
 
                                                     <!-- Colunas fixas (que já estavam aí) -->
-                                                    <th>Longitude</th>
-                                                    <th>Latitude</th>
-                                                    <th>Cidade ID</th>
-                                                    <th>Cota RN ANA</th>
-                                                    <th>Cota RN ORTO</th>
+                                                    <th class="text-center">Longitude</th>
+                                                    <th class="text-center">Latitude</th>
+                                                    <th class="text-center">Cidade ID</th>
+                                                    <th class="text-center">Cota RN ANA</th>
+                                                    <th class="text-center">Cota RN ORTO</th>
                                                     <th>
                                                         <div class="text-center">Integrado</div>
                                                     </th>
@@ -117,21 +120,49 @@
                                             <tbody>
                                                 <tr>
                                                     <!-- Colunas transferíveis (ocultas por padrão aqui embaixo) -->
-                                                    <td class="col-detail col-municipio" style="display: none;">
+                                                    <td class="col-detail col-municipio text-center style=" display:
+                                                        none;">
                                                         {{ item.municipio }}</td>
-                                                    <td class="col-detail col-estacao" style="display: none;">
+                                                    <td class="col-detail col-estacao text-center"
+                                                        style="display: none;">
                                                         {{ item.cd_estacao }} m
                                                     </td>
-                                                    <td class="col-detail col-data-voo" style="display: none;">
+                                                    <td class="col-detail col-data-voo text-center"
+                                                        style="display: none;">
                                                         {{ item.data_voo }}
                                                     </td>
 
                                                     <!-- Colunas fixas -->
-                                                    <td>{{ item.longitude }}</td>
-                                                    <td>{{ item.latitude }}</td>
-                                                    <td>{{ item.cidade_id }}</td>
-                                                    <td>{{ item.cota_rn_ana }}</td>
-                                                    <td>{{ item.cota_rn_orto }}</td>
+                                                    <td class="text-center">
+                                                        <div class="badge bg-light text-dark border">
+
+                                                            {{ item.longitude }}
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="badge bg-light text-dark border">
+
+                                                            {{ item.latitude }}
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="badge bg-light text-dark border">
+
+                                                            {{ item.cidade_id }}
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="badge bg-light text-dark border">
+
+                                                            {{ item.cota_rn_ana }}
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="badge bg-light text-dark border">
+
+                                                            {{ item.cota_rn_orto }}
+                                                        </div>
+                                                    </td>
                                                     <td>
                                                         <div class="text-center">
                                                             {% if item.integrado %}

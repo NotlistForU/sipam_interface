@@ -8,6 +8,7 @@
   --table-head: #f8f9fa;
   --hover: #f1f5f9;
   --censipam-verde: #198754;
+  --azul-vivo: rgb(13, 110, 253);
 }
 
 /* Tema Claro */
@@ -39,7 +40,7 @@ body {
   border-color: var(--border) !important;
 }
 
-.table {
+/* .table {
   color: var(--text);
 }
 
@@ -47,15 +48,15 @@ body {
   background: var(--table-head);
   color: var(--text-muted);
   border-color: var(--border);
-}
+} */
 
-.table td {
+/* .table td {
   border-color: var(--border);
 }
 
 .table tbody tr:hover {
-  background: var(--hover);
-}
+  background: rgb(13, 110, 253);
+} */
 
 .text-muted {
   color: var(--text-muted) !important;
@@ -185,6 +186,10 @@ body {
   padding: 1rem;
 }
 
+.tabela-estacoes thead tr.detalhes th {
+  background-color: transparent;
+}
+
 .tabela-estacoes tbody td {
   padding: .9rem 1rem;
   border-color: #f1f3f5;
@@ -194,11 +199,11 @@ body {
   transition: all .2s ease;
 }
 
-.tabela-estacoes tbody tr:hover {
+/* .tabela-estacoes tbody tr:hover {
   box-shadow: 0 0 0 1px rgb(13, 110, 253);
   transform: scale(1.002);
   cursor: pointer;
-}
+} */
 
 .card {
   border-radius: 16px;

@@ -34,6 +34,8 @@ class InundacaoUrbanaListagemDadosView(View):
           num_cota_atencao = sum(1 for item in dados if item.cota_atencao)
           num_cota_alerta = sum(1 for item in dados if item.cota_alerta)
           num_cota_inundacao = sum(1 for item in dados if item.cota_inundacao)
+
+          
           
           if num_dados > 0 :
                por_cent_integrado = (num_integrado * 100) / num_dados

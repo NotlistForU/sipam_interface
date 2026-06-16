@@ -37,5 +37,17 @@ class InundacaoUrbana(models.Model):
         db_table = '"sipam"."sipam_inundacao_urbana"'
         managed = False ######
 
+    @property
+    def cota_atencao_formatada(self):
+        return f"{self.cota_atencao} m" if self.cota_atencao is not None else None
+    
+    @property
+    def cota_alerta_formatada(self):
+        return f"{self.cota_alerta} m" if self.cota_alerta is not None else None
+    
+    @property
+    def cota_inundacao_formatada(self):
+        return f"{self.cota_inundacao} m" if self.cota_inundacao is not None else None
+
     # def __str__(self):
     #     return self.municipio or f'Inundação Urbana {self.id}';
