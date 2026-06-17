@@ -2,8 +2,7 @@ import json
 from django.views import View
 from django.shortcuts  import render, get_list_or_404
 from django.http import HttpResponse, JsonResponse
-from sipam_interface.modules.inundacao_urbana.inundacao_urbana_entity import InundacaoUrbana
-from .inundacao_urbana_service import InundacaoUrbanaService
+from sipam_interface.modules.inundacao_urbana.inundacao_urbana_model import InundacaoUrbana
 
 class InundacaoUrbanaCadastroView(View):
      """Controller responsável apenas pela tela e ação de cadastro"""
@@ -24,8 +23,8 @@ class InundacaoUrbanaListagemDadosView(View):
      """Controller responsável pela listagem dados"""
 
      def get(self, request) -> HttpResponse:
-          service = InundacaoUrbanaService()
-          dados = service.listar_todos_dados()
+          dados = InundacaoUrbana.objects.all();
+
           num_dados = len(dados)
           num_estacoes = sum(1 for item in dados if item.cd_estacao)
           num_municipios = len(set(item.municipio for item in dados))
@@ -43,7 +42,7 @@ class InundacaoUrbanaListagemDadosView(View):
                por_cent_integrado = 0.0
 
           return render(
-               request, 'listagem_dados/componentes/index.html', 
+               request, 'componentes/index.html', 
                         {
                              'dados': dados,
                              'num_dados': num_dados, 
@@ -54,7 +53,8 @@ class InundacaoUrbanaListagemDadosView(View):
                              'num_cota_alerta': num_cota_alerta,
                              'num_cota_inundacao': num_cota_inundacao,
                              'por_cent_integrado': por_cent_integrado})
-          # return render(request, 'listagem_dados.html', {'dados': dados})
+
+
 # lisagem_dados():
 #   if request.method == 'GET:
 #       registros = service.listagem_dados()

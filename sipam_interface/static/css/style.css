@@ -169,6 +169,11 @@ body {
   min-width: 1200px;
 }
 
+.table-responsive.tabela-estacoes {
+  overflow: clip;
+  /* Permite o sticky funcionar verticalmente */
+}
+
 .tabela-estacoes thead th {
   position: sticky;
   top: 0;

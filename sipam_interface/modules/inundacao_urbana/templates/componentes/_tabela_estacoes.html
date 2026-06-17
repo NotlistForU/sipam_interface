@@ -18,18 +18,14 @@
                 <thead>
                     <tr>
                         <th style="width: 50px;"></th>
-                        <th>
-                            <div>ID</div>
-                        </th>
-                        <th class="col-main col-municipio">
-                            <div>Município</div>
-                        </th>
-                        <th class="col-main col-estacao">Estação</th>
+                        <th> ID </th>
+                        <th> Município</th>
+                        <th>Estação</th>
                         <th>Atenção</th>
                         <th>Alerta</th>
                         <th>Inundação</th>
                         <th>Máxima</th>
-                        <th class="col-main col-data-voo">Data Voo</th>
+                        <th>Data Voo</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -45,10 +41,10 @@
                         <td>
                             <div><span class="fw-semibold">#{{ item.id }}</span></div>
                         </td>
-                        <td class="municipio-cell col-main col-municipio">
+                        <td class="">
                             <div class="fw-semibold text-dark">{{ item.municipio }}</div>
                         </td>
-                        <td class="col-main col-estacao">
+                        <td>
                             <span class="badge rounded-pill bg-light text-dark border">{{ item.cd_estacao }}</span>
                         </td>
                         <td>
@@ -63,7 +59,7 @@
                         <td>
                             <strong class="text-danger">{{ item.cota_maxima }}</strong>
                         </td>
-                        <td class="col-main col-data-voo">
+                        <td>
                             <span class="">{{ item.data_voo }}</span>
                         </td>
                         <td>
@@ -91,22 +87,10 @@
                                     </p>
 
                                     <div class="table-responsive">
-                                        <table class="table table-sm mb-0">
+                                        <table id="table_inundacoes_urbana" class="table table-sm mb-0">
                                             <thead>
                                                 <tr class="detalhes">
-                                                    <!-- Colunas transferíveis (ocultas por padrão aqui embaixo) -->
-                                                    <th class="col-detail col-municipio text-center"
-                                                        style="display: none;">
-                                                        Município</th>
-                                                    <th class="col-detail col-estacao text-center"
-                                                        style="display: none;">
-                                                        Estação</th>
-                                                    <th class="col-detail col-data-voo text-center"
-                                                        style="display: none;">
-                                                        Data Voo
-                                                    </th>
 
-                                                    <!-- Colunas fixas (que já estavam aí) -->
                                                     <th class="text-center">Longitude</th>
                                                     <th class="text-center">Latitude</th>
                                                     <th class="text-center">Cidade ID</th>
@@ -119,20 +103,6 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <!-- Colunas transferíveis (ocultas por padrão aqui embaixo) -->
-                                                    <td class="col-detail col-municipio text-center style=" display:
-                                                        none;">
-                                                        {{ item.municipio }}</td>
-                                                    <td class="col-detail col-estacao text-center"
-                                                        style="display: none;">
-                                                        {{ item.cd_estacao }} m
-                                                    </td>
-                                                    <td class="col-detail col-data-voo text-center"
-                                                        style="display: none;">
-                                                        {{ item.data_voo }}
-                                                    </td>
-
-                                                    <!-- Colunas fixas -->
                                                     <td class="text-center">
                                                         <div class="badge bg-light text-dark border">
 
